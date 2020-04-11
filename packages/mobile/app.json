@@ -1,16 +1,16 @@
 {
   "expo": {
-    "name": "Apollo Universal Starter Kit",
-    "description": "A React Native mobile app based on Apollo Universal Starter Kit",
+    "name": "GL318",
+    "description": "GL318",
     "icon": "../../app.png",
     "version": "1.0.0",
-    "slug": "apollo-universal-starter-kit",
+    "slug": "GL318-apollo",
     "sdkVersion": "36.0.0",
     "ios": {
-      "bundleIdentifier": "com.sysgears.apollokit"
+      "bundleIdentifier": "com.gl318.apollokit"
     },
     "android": {
-      "package": "com.sysgears.apollokit"
+      "package": "com.gl318.apollokit"
     },
     "packagerOpts": {
       "config": "metro.config.js",
