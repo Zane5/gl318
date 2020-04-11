@@ -1,0 +1,194 @@
+{
+  "loading": "正在加载...",
+  "navLink": {
+    "users": "用户管理",
+    "signIn": "登录",
+    "logout": "退出",
+    "profile": "我的账户",
+    "editProfile": "更改账户信息",
+    "editUser": "编辑用户信息",
+    "forgotPassword": "忘记密码",
+    "register": "注册",
+    "resetPassword": "重置密码"
+  },
+  "forgotPass": {
+    "title": "忘记密码",
+    "meta": "A Forgot Password page example",
+    "errorMsg": "更改密码失败!",
+    "form": {
+      "title": "密码重置",
+      "submitMsg": "重置密码的邮件已经发出.",
+      "fldEmail": "电子邮件",
+      "btnSubmit": "发送邮件"
+    }
+  },
+
+  "login": {
+    "title": "登录",
+    "meta": "A Login page example",
+    "errorMsg": "登录失败!",
+    "cardTitle": "Available logins",
+    "notRegText": "还没有注册?",
+    "fbBtn": "使用 Facebook 登录",
+    "googleBtn": "使用 Google 登录",
+    "githubBtn": "使用 GitHub 登录",
+    "linkedinBtn": "使用 LinkedIn 登录",
+    "form": {
+      "title": "登录",
+      "field": {
+        "usernameOrEmail": "用户名或邮箱",
+        "pass": "密码"
+      },
+      "btnSubmit": "登录"
+    },
+    "btn": {
+      "forgotPass": "忘记密码?",
+      "notReg": "还没有注册?",
+      "sign": "注册"
+    }
+  },
+
+  "profile": {
+    "title": "Profile",
+    "headerText": "Profile info",
+    "meta": "A Profile page example",
+    "loadMsg": "Loading...",
+    "errorMsg": "No current user is logged in",
+    "editProfileText": "Edit Profile",
+    "card": {
+      "title": "Profile",
+      "group": {
+        "name": "User Name",
+        "email": "Email",
+        "role": "Role",
+        "full": "Full Name"
+      },
+      "fldEmail": "Email",
+      "btnSubmit": "Send instructions"
+    }
+  },
+
+  "reg": {
+    "title": "注册",
+    "meta": "A Registration page example",
+    "errorMsg": "注册失败!",
+    "form": {
+      "title": "注册",
+      "field": {
+        "name": "用户名",
+        "email": "邮箱",
+        "pass": "密码",
+        "passConf": "确认密码"
+      },
+      "btnSubmit": "注册"
+    },
+    "confirmationMsgTitle": "Verify Your Email Address",
+    "confirmationMsgBody": "We now need to verify your email address. We've sent you the email. Please click the link in that email to continue. ",
+    "confirmationBtn": "Go back to Login page",
+    "successRegTitle": "Email Has Been Verified Successfully",
+    "successRegBody": "Your email has been verified successfully. You can sign in using your login and password."
+  },
+
+  "resetPass": {
+    "title": "Reset password",
+    "meta": "A Reset Password page example",
+    "errorMsg": "Password reset failed!",
+    "form": {
+      "title": "Reset Password",
+      "field": {
+        "pass": "Password",
+        "passConf": "Password Confirmation"
+      },
+      "btnSubmit": "Reset password"
+    }
+  },
+
+  "userEdit": {
+    "title": "Edit User",
+    "meta": "An Edit User page example",
+    "errorMsg": "User editing failed!",
+    "loadMsg": "Loading...",
+    "form": {
+      "title": "User",
+      "titleEdit": "Edit",
+      "titleCreate": "Create",
+      "field": {
+        "name": "Username",
+        "email": "Email",
+        "role": {
+          "label": "Role",
+          "user": "user",
+          "admin": "admin"
+        },
+        "active": "Is Active",
+        "firstName": "First Name",
+        "lastName": "Last Name",
+        "serial": "Serial",
+        "pass": "Password",
+        "passConf": "Password Confirmation"
+      },
+      "btnSubmit": "Save"
+    },
+    "select": {
+      "okText": "Done",
+      "dismissText": "Cancel"
+    },
+    "btnBack": "Back"
+  },
+  "userAdd": {
+    "errorMsg": "Add user failed!"
+  },
+
+  "users": {
+    "title": "Users",
+    "meta": "A User List page example",
+    "loadMsg": "Loading...",
+    "list": {
+      "title": "Users",
+      "item": {
+        "filter": "Filter",
+        "search": "Search ...",
+        "role": {
+          "label": "Role",
+          "all": "All",
+          "user": "user",
+          "admin": "admin"
+        },
+        "active": "Is Active"
+      }
+    },
+    "select": {
+      "okText": "Done",
+      "dismissText": "Cancel"
+    },
+    "btnModalSubmit": "Submit",
+    "btnModalClose": "Close",
+    "orderByText": "Order by",
+    "column": {
+      "name": "Username",
+      "email": "Email",
+      "role": "Role",
+      "active": "Is Active",
+      "actions": "Actions"
+    },
+    "btn": {
+      "add": "Add user",
+      "delete": "Delete"
+    }
+  },
+
+  "nativeMock": "Hello, ",
+  "mobile": {
+    "login": {
+      "usernameOrEmail": {
+        "label": "用户名或邮箱",
+        "placeholder": "请输入用户名或邮箱"
+      },
+      "pass": {
+        "label": "密码",
+        "placeholder": "请输入密码"
+      }
+    },
+    "logout": "退出"
+  }
+}
