@@ -11,6 +11,7 @@ import authentication from '@gqlapp/authentication-client-react';
 import ClientModule from '@gqlapp/module-client-react-native';
 
 import home from '@gqlapp/home-client-react';
+import player from '@gqlapp/player-client-react';
 
 const post = require('@gqlapp/post-client-react').default;
 const upload = require('@gqlapp/upload-client-react').default;
@@ -19,6 +20,7 @@ const user = require('@gqlapp/user-client-react').default;
 
 const modules = new ClientModule(
   home,
+  player,
   validation,
   defaultRouter,
   counter,
