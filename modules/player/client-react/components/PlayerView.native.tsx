@@ -2,11 +2,8 @@ import React from 'react';
 import { StyleSheet, Text, TouchableOpacity, View, Image } from 'react-native';
 import { TranslateFunction } from '@gqlapp/i18n-client-react';
 
-import { Asset } from 'expo-asset';
-import { Audio, Video } from 'expo-av';
-import * as Font from 'expo-font';
+import { Audio } from 'expo-av';
 
-import { Button, primary } from '@gqlapp/look-client-react-native';
 import { Ionicons } from '@expo/vector-icons';
 
 const audioBookPlaylist = [
