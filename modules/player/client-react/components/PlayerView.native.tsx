@@ -4,7 +4,8 @@ import { TranslateFunction } from '@gqlapp/i18n-client-react';
 import { Asset } from 'expo-asset';
 import { Audio, Video } from 'expo-av';
 import * as Font from 'expo-font';
-import { Ionicons, MaterialIcons } from '@expo/vector-icons';
+import { MaterialIcons } from '@expo/vector-icons';
+import { IconButton } from '@gqlapp/look-client-react-native';
 
 interface Icon {
   module: any;
@@ -62,8 +63,6 @@ const PLAYLIST = [
 const ICON_THROUGH_EARPIECE = 'speaker-phone';
 const ICON_THROUGH_SPEAKER = 'speaker';
 
-const ICON_PLAY_BUTTON = new Icon(require('./assets/images/play_button.png'), 34, 51);
-const ICON_PAUSE_BUTTON = new Icon(require('./assets/images/pause_button.png'), 34, 51);
 const ICON_STOP_BUTTON = new Icon(require('./assets/images/stop_button.png'), 22, 22);
 const ICON_FORWARD_BUTTON = new Icon(require('./assets/images/forward_button.png'), 33, 25);
 const ICON_BACK_BUTTON = new Icon(require('./assets/images/back_button.png'), 33, 25);
@@ -90,6 +89,15 @@ const LOADING_STRING = '... loading ...';
 const BUFFERING_STRING = '...buffering...';
 const RATE_SCALE = 3.0;
 const VIDEO_CONTAINER_HEIGHT = (DEVICE_HEIGHT * 2.0) / 5.0 - FONT_SIZE * 2;
+
+interface Player {
+  index: number;
+  isSeeking: boolean;
+  shouldPlayAtEndOfSeek: boolean;
+  playbackInstance: any;
+  state: any;
+  _video: any;
+}
 
 class Player extends React.Component {
   constructor(props) {
@@ -141,7 +149,7 @@ class Player extends React.Component {
     })();
   }
 
-  public async _loadNewPlaybackInstance(playing) {
+  public async _loadNewPlaybackInstance(playing: any) {
     if (this.playbackInstance != null) {
       await this.playbackInstance.unloadAsync();
       // this.playbackInstance.setOnPlaybackStatusUpdate(null);
@@ -161,7 +169,7 @@ class Player extends React.Component {
     };
 
     if (PLAYLIST[this.index].isVideo) {
-      // console.log(this._onPlaybackStatusUpdate);
+      console.log(this._onPlaybackStatusUpdate);
       await this._video.loadAsync(source, initialStatus);
       // this._video.onPlaybackStatusUpdate(this._onPlaybackStatusUpdate);
       this.playbackInstance = this._video;
@@ -174,12 +182,12 @@ class Player extends React.Component {
     this._updateScreenForLoading(false);
   }
 
-  public _mountVideo = component => {
+  public _mountVideo = (component: any) => {
     this._video = component;
     this._loadNewPlaybackInstance(false);
   };
 
-  public _updateScreenForLoading(isLoading) {
+  public _updateScreenForLoading(isLoading: boolean) {
     if (isLoading) {
       this.setState({
         showVideo: false,
@@ -198,7 +206,7 @@ class Player extends React.Component {
     }
   }
 
-  public _onPlaybackStatusUpdate = status => {
+  public _onPlaybackStatusUpdate = (status: any) => {
     if (status.isLoaded) {
       this.setState({
         playbackInstancePosition: status.positionMillis,
@@ -218,24 +226,24 @@ class Player extends React.Component {
       }
     } else {
       if (status.error) {
-        // console.log(`FATAL PLAYER ERROR: ${status.error}`);
+        console.log(`FATAL PLAYER ERROR: ${status.error}`);
       }
     }
   };
 
   public _onLoadStart = () => {
-    // console.log(`ON LOAD START`);
+    console.log(`ON LOAD START`);
   };
 
-  public _onLoad = status => {
-    // console.log(`ON LOAD : ${JSON.stringify(status)}`);
+  public _onLoad = (status: any) => {
+    console.log(`ON LOAD : ${JSON.stringify(status)}`);
   };
 
-  public _onError = error => {
-    // console.log(`ON ERROR : ${error}`);
+  public _onError = (error: error) => {
+    console.log(`ON ERROR : ${error}`);
   };
 
-  public _onReadyForDisplay = event => {
+  public _onReadyForDisplay = (event: any) => {
     const widestHeight = (DEVICE_WIDTH * event.naturalSize.height) / event.naturalSize.width;
     if (widestHeight > VIDEO_CONTAINER_HEIGHT) {
       this.setState({
@@ -250,15 +258,15 @@ class Player extends React.Component {
     }
   };
 
-  public _onFullscreenUpdate = event => {
-    // console.log(`FULLSCREEN UPDATE : ${JSON.stringify(event.fullscreenUpdate)}`);
+  public _onFullscreenUpdate = (event: any) => {
+    console.log(`FULLSCREEN UPDATE : ${JSON.stringify(event.fullscreenUpdate)}`);
   };
 
-  public _advanceIndex(forward) {
+  public _advanceIndex(forward: boolean) {
     this.index = (this.index + (forward ? 1 : PLAYLIST.length - 1)) % PLAYLIST.length;
   }
 
-  public async _updatePlaybackInstanceForIndex(playing) {
+  public async _updatePlaybackInstanceForIndex(playing: boolean) {
     this._updateScreenForLoading(true);
 
     this.setState({
@@ -311,13 +319,13 @@ class Player extends React.Component {
     }
   };
 
-  public _onVolumeSliderValueChange = value => {
+  public _onVolumeSliderValueChange = (value: any) => {
     if (this.playbackInstance != null) {
       this.playbackInstance.setVolumeAsync(value);
     }
   };
 
-  public _trySetRate = async (rate, shouldCorrectPitch) => {
+  public _trySetRate = async (rate: any, shouldCorrectPitch: boolean) => {
     if (this.playbackInstance != null) {
       try {
         await this.playbackInstance.setRateAsync(rate, shouldCorrectPitch);
@@ -366,7 +374,7 @@ class Player extends React.Component {
     return 0;
   }
 
-  public _getMMSSFromMillis(millis) {
+  public _getMMSSFromMillis(millis: number) {
     const totalSeconds = millis / 1000;
     const seconds = Math.floor(totalSeconds % 60);
     const minutes = Math.floor(totalSeconds / 60);
@@ -406,7 +414,7 @@ class Player extends React.Component {
     try {
       this._video.presentFullscreenPlayer();
     } catch (error) {
-      // console.log(error.toString());
+      console.log(error.toString());
     }
   };
 
@@ -501,25 +509,26 @@ class Player extends React.Component {
           >
             <Image style={styles.button} source={ICON_BACK_BUTTON.module} />
           </TouchableHighlight>
-          <TouchableHighlight
+
+          <IconButton
+            iconName={this.state.isPlaying ? 'pause' : 'play'}
+            iconSize={32}
+            iconColor="#000"
             underlayColor={BACKGROUND_COLOR}
             style={styles.wrapper}
             onPress={this._onPlayPausePressed}
             disabled={this.state.isLoading}
-          >
-            <Image
-              style={styles.button}
-              source={this.state.isPlaying ? ICON_PAUSE_BUTTON.module : ICON_PLAY_BUTTON.module}
-            />
-          </TouchableHighlight>
-          <TouchableHighlight
+          />
+          <IconButton
+            iconName={'square'}
+            iconSize={32}
+            iconColor="#000"
             underlayColor={BACKGROUND_COLOR}
             style={styles.wrapper}
             onPress={this._onStopPressed}
             disabled={this.state.isLoading}
-          >
-            <Image style={styles.button} source={ICON_STOP_BUTTON.module} />
-          </TouchableHighlight>
+          />
+
           <TouchableHighlight
             underlayColor={BACKGROUND_COLOR}
             style={styles.wrapper}
@@ -712,7 +721,6 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between'
   },
   buttonsContainerTopRow: {
-    maxHeight: ICON_PLAY_BUTTON.height,
     minWidth: DEVICE_WIDTH / 2.0,
     maxWidth: DEVICE_WIDTH / 2.0
   },
