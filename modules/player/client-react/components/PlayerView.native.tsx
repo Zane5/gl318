@@ -60,12 +60,11 @@ const PLAYLIST = [
   )
 ];
 
+const ICON_SIZE = 32;
+const ICON_COLOR = '#000';
+
 const ICON_THROUGH_EARPIECE = 'speaker-phone';
 const ICON_THROUGH_SPEAKER = 'speaker';
-
-const ICON_STOP_BUTTON = new Icon(require('./assets/images/stop_button.png'), 22, 22);
-const ICON_FORWARD_BUTTON = new Icon(require('./assets/images/forward_button.png'), 33, 25);
-const ICON_BACK_BUTTON = new Icon(require('./assets/images/back_button.png'), 33, 25);
 
 const ICON_LOOP_ALL_BUTTON = new Icon(require('./assets/images/loop_all_button.png'), 77, 35);
 const ICON_LOOP_ONE_BUTTON = new Icon(require('./assets/images/loop_one_button.png'), 77, 35);
@@ -501,19 +500,20 @@ class Player extends React.Component {
             }
           ]}
         >
-          <TouchableHighlight
+          <IconButton
+            iconName={'skip-back'}
+            iconSize={ICON_SIZE}
+            iconColor={ICON_COLOR}
             underlayColor={BACKGROUND_COLOR}
             style={styles.wrapper}
             onPress={this._onBackPressed}
             disabled={this.state.isLoading}
-          >
-            <Image style={styles.button} source={ICON_BACK_BUTTON.module} />
-          </TouchableHighlight>
+          ></IconButton>
 
           <IconButton
             iconName={this.state.isPlaying ? 'pause' : 'play'}
-            iconSize={32}
-            iconColor="#000"
+            iconSize={ICON_SIZE}
+            iconColor={ICON_COLOR}
             underlayColor={BACKGROUND_COLOR}
             style={styles.wrapper}
             onPress={this._onPlayPausePressed}
@@ -521,31 +521,34 @@ class Player extends React.Component {
           />
           <IconButton
             iconName={'square'}
-            iconSize={32}
-            iconColor="#000"
+            iconSize={ICON_SIZE}
+            iconColor={ICON_COLOR}
             underlayColor={BACKGROUND_COLOR}
             style={styles.wrapper}
             onPress={this._onStopPressed}
             disabled={this.state.isLoading}
           />
 
-          <TouchableHighlight
+          <IconButton
+            iconName={'skip-forward'}
+            iconSize={ICON_SIZE}
+            iconColor={ICON_COLOR}
             underlayColor={BACKGROUND_COLOR}
             style={styles.wrapper}
             onPress={this._onForwardPressed}
             disabled={this.state.isLoading}
-          >
-            <Image style={styles.button} source={ICON_FORWARD_BUTTON.module} />
-          </TouchableHighlight>
+          ></IconButton>
         </View>
         <View style={[styles.buttonsContainerBase, styles.buttonsContainerMiddleRow]}>
           <View style={styles.volumeContainer}>
-            <TouchableHighlight underlayColor={BACKGROUND_COLOR} style={styles.wrapper} onPress={this._onMutePressed}>
-              <Image
-                style={styles.button}
-                source={this.state.muted ? ICON_MUTED_BUTTON.module : ICON_UNMUTED_BUTTON.module}
-              />
-            </TouchableHighlight>
+            <IconButton
+              iconName={this.state.muted ? 'volume-x' : 'volume'}
+              iconSize={ICON_SIZE}
+              iconColor={ICON_COLOR}
+              underlayColor={BACKGROUND_COLOR}
+              style={styles.wrapper}
+              onPress={this._onMutePressed}
+            ></IconButton>
             <Slider
               style={styles.volumeSlider}
               trackImage={ICON_TRACK_1.module}
@@ -554,9 +557,14 @@ class Player extends React.Component {
               onValueChange={this._onVolumeSliderValueChange}
             />
           </View>
-          <TouchableHighlight underlayColor={BACKGROUND_COLOR} style={styles.wrapper} onPress={this._onLoopPressed}>
-            <Image style={styles.button} source={LOOPING_TYPE_ICONS[this.state.loopingType].module} />
-          </TouchableHighlight>
+          <IconButton
+            iconName={this.state.loopingType ? 'rotate-ccw' : 'repeat'}
+            iconSize={ICON_SIZE}
+            iconColor={ICON_COLOR}
+            underlayColor={BACKGROUND_COLOR}
+            style={styles.wrapper}
+            onPress={this._onLoopPressed}
+          ></IconButton>
         </View>
         <View style={[styles.buttonsContainerBase, styles.buttonsContainerBottomRow]}>
           <TouchableHighlight
