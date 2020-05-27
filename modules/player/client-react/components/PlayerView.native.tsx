@@ -148,7 +148,7 @@ class Player extends React.Component {
     })();
   }
 
-  public async _loadNewPlaybackInstance(playing: any) {
+  public async _loadNewPlaybackInstance(playing: boolean) {
     if (this.playbackInstance != null) {
       await this.playbackInstance.unloadAsync();
       // this.playbackInstance.setOnPlaybackStatusUpdate(null);
@@ -238,7 +238,7 @@ class Player extends React.Component {
     console.log(`ON LOAD : ${JSON.stringify(status)}`);
   };
 
-  public _onError = (error: error) => {
+  public _onError = (error: string) => {
     console.log(`ON ERROR : ${error}`);
   };
 
@@ -334,15 +334,15 @@ class Player extends React.Component {
     }
   };
 
-  public _onRateSliderSlidingComplete = async value => {
+  public _onRateSliderSlidingComplete = async (value: number) => {
     this._trySetRate(value * RATE_SCALE, this.state.shouldCorrectPitch);
   };
 
-  public _onPitchCorrectionPressed = async value => {
+  public _onPitchCorrectionPressed = async (value: number) => {
     this._trySetRate(this.state.rate, !this.state.shouldCorrectPitch);
   };
 
-  public _onSeekSliderValueChange = value => {
+  public _onSeekSliderValueChange = (value: number) => {
     if (this.playbackInstance != null && !this.isSeeking) {
       this.isSeeking = true;
       this.shouldPlayAtEndOfSeek = this.state.shouldPlay;
@@ -350,7 +350,7 @@ class Player extends React.Component {
     }
   };
 
-  public _onSeekSliderSlidingComplete = async value => {
+  public _onSeekSliderSlidingComplete = async (value: number) => {
     if (this.playbackInstance != null) {
       this.isSeeking = false;
       const seekPosition = value * this.state.playbackInstanceDuration;
@@ -508,8 +508,7 @@ class Player extends React.Component {
             style={styles.wrapper}
             onPress={this._onBackPressed}
             disabled={this.state.isLoading}
-          ></IconButton>
-
+          />
           <IconButton
             iconName={this.state.isPlaying ? 'pause' : 'play'}
             iconSize={ICON_SIZE}
@@ -528,7 +527,6 @@ class Player extends React.Component {
             onPress={this._onStopPressed}
             disabled={this.state.isLoading}
           />
-
           <IconButton
             iconName={'skip-forward'}
             iconSize={ICON_SIZE}
@@ -537,12 +535,12 @@ class Player extends React.Component {
             style={styles.wrapper}
             onPress={this._onForwardPressed}
             disabled={this.state.isLoading}
-          ></IconButton>
+          />
         </View>
         <View style={[styles.buttonsContainerBase, styles.buttonsContainerMiddleRow]}>
           <View style={styles.volumeContainer}>
             <IconButton
-              iconName={this.state.muted ? 'volume-x' : 'volume'}
+              iconName={this.state.muted ? 'volume-x' : 'volume-2'}
               iconSize={ICON_SIZE}
               iconColor={ICON_COLOR}
               underlayColor={BACKGROUND_COLOR}
@@ -729,8 +727,8 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between'
   },
   buttonsContainerTopRow: {
-    minWidth: DEVICE_WIDTH / 2.0,
-    maxWidth: DEVICE_WIDTH / 2.0
+    minWidth: DEVICE_WIDTH / 1.2,
+    maxWidth: DEVICE_WIDTH / 1.2
   },
   buttonsContainerMiddleRow: {
     maxHeight: ICON_MUTED_BUTTON.height,
