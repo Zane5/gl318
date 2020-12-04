@@ -59,6 +59,7 @@
     "expo-permissions": "^8.0.0",
     "expo-secure-store": "^8.0.0",
     "expo-web-browser": "^8.0.0",
+    "expo-av": "^8.0.0",
     "extract-files": "^5.0.0",
     "filesize": "^3.5.11",
     "graphql": "^14.3.1",

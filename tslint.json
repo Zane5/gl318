@@ -12,19 +12,30 @@
     ]
   },
   "linterOptions": {
-    "exclude": ["**/*.js", "**/*.jsx", "**/*.d.ts", "tools/**/*.*"]
+    "exclude": [
+      "**/*.js",
+      "**/*.jsx",
+      "**/*.d.ts",
+      "tools/**/*.*"
+    ]
   },
   "rules": {
-    "prettier": [true, {
-      "printWidth": 120,
-      "singleQuote": true
-    }],
+    "prettier": [
+      true,
+      {
+        "printWidth": 120,
+        "singleQuote": true
+      }
+    ],
     "max-classes-per-file": false,
     "ban": false,
     "class-name": true,
     "eofline": true,
     "forin": true,
-    "interface-name": [true, "never-prefix"],
+    "interface-name": [
+      true,
+      "never-prefix"
+    ],
     "jsdoc-format": true,
     "label-position": true,
     "member-access": true,
@@ -47,8 +58,21 @@
     "no-empty-interface": false,
     "no-conditional-assignment": true,
     "no-consecutive-blank-lines": false,
-    "no-namespace": [true, "allow-declarations"],
-    "no-console": [true, "log", "debug", "info", "time", "timeEnd", "trace"],
+    "no-namespace": [
+      true,
+      "allow-declarations"
+    ],
+    "no-console": {
+      "severity": "warning",
+      "options": [
+        "log",
+        "debug",
+        "info",
+        "time",
+        "timeEnd",
+        "trace"
+      ]
+    },
     "no-construct": true,
     "no-debugger": true,
     "no-duplicate-variable": true,
@@ -72,7 +96,10 @@
     "ordered-imports": false,
     "radix": true,
     "switch-default": true,
-    "triple-equals": [true, "allow-null-check"],
+    "triple-equals": [
+      true,
+      "allow-null-check"
+    ],
     "typedef": [
       false,
       "call-signature",

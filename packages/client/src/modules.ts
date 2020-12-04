@@ -1,3 +1,5 @@
+import player from '@gqlapp/player-client-react';
+import home from '@gqlapp/home-client-react';
 import core from '@gqlapp/core-client-react';
 import look from '@gqlapp/look-client-react';
 import i18n from '@gqlapp/i18n-client-react';
@@ -19,6 +21,8 @@ const pagination = require('@gqlapp/pagination-client-react').default;
 const user = require('@gqlapp/user-client-react').default;
 
 const modules = new ClientModule(
+  player,
+  home,
   look,
   validation,
   defaultRouter,
